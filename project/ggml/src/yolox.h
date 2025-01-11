@@ -847,10 +847,7 @@ struct YOLOX : GGMLNetwork {
         x = ggml_interpolate(ctx, x, 1 /*on H*/, MAX_H);
         x = ggml_scale(ctx, x, 255.0f);
 
-        CheckPoint();
-
         std::vector<ggml_tensor_t *>fpn_outs = backbone.forward(ctx, x);
-        CheckPoint();
 
         ggml_tensor_t *detect_result = head.forward(ctx, fpn_outs);
         // # tensor [detect_result] size: [1, 8400, 6], min: -51.966671, max: 866.434814, mean: 194.278854
